@@ -1,0 +1,91 @@
+{
+"ShipToConAmt": [{
+		"Type": "TypeC",
+		"Customer": "India",
+		"APR": "8M",
+		"MAY": "8M",
+		"JUN": "8M",
+		"JUL": "8M",
+		"AUG": "8M",
+		"SEP": "8M",
+		"OCT": "8M",
+		"NOV": "8M",
+		"DEC": "8M",
+		"JAN": "8M",
+		"FEB": "8M",
+		"MAR": "8M",
+		"Month": "JAN",
+		"Amount": "500000.00"
+
+	}, {
+		"Type": "TypeC",
+		"Customer": "Japan",
+		"APR": "6M",
+		"MAY": "6M",
+		"JUN": "6M",
+		"JUL": "6M",
+		"AUG": "6M",
+		"SEP": "6M",
+		"OCT": "6M",
+		"NOV": "6M",
+		"DEC": "6M",
+		"JAN": "6M",
+		"FEB": "6M",
+		"MAR": "6M",
+		"Month": "FEB",
+		"Amount": "1000000.00"
+
+	}, {
+		"Type": "TypeC",
+		"Customer": "China",
+		"APR": "3M",
+		"MAY": "3M",
+		"JUN": "3M ",
+		"JUL": "3M",
+		"AUG": "3M",
+		"SEP": "3M",
+		"OCT": "3M",
+		"NOV": "3M",
+		"DEC": "3M",
+		"JAN": "3M",
+		"FEB": "3M",
+		"MAR": "3M",
+
+		"Month": "MAR"
+
+	}, {
+		"Type": "TypeC",
+	"Customer": "Germany",
+		"APR": "9M",
+		"MAY": "9M",
+		"JUN": "9M ",
+		"JUL": "9M",
+		"AUG": "9M",
+		"SEP": "9M",
+		"OCT": "9M",
+		"NOV": "9M",
+		"DEC": "9M",
+		"JAN": "9M",
+		"FEB": "9M",
+		"MAR": "9M",
+		"Month": "APR"
+
+	}, {
+		"Type": "TypeC",
+			"Customer": "America",
+		"APR": "10M",
+		"MAY": "10M",
+		"JUN": "10M ",
+		"JUL": "10M",
+		"AUG": "10M",
+		"SEP": "10M",
+		"OCT": "10M",
+		"NOV": "10M",
+		"DEC": "10M",
+		"JAN": "10M",
+		"FEB": "10M",
+		"MAR": "10M",
+		"Month": "MAY"
+
+	}]
+}

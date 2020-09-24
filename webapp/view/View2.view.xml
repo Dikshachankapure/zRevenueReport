@@ -1,0 +1,261 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="RevenueReport.ZREVENUE_REPORT.controller.View2"
+	xmlns:html="http://www.w3.org/1999/xhtml" 	xmlns:semantic="sap.m.semantic" xmlns:layout="sap.ui.layout" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"  xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:l="sap.ui.layout" >
+	<App>
+		<pages>
+			<Page title="Revenue Report"  showNavButton="true" navButtonPress="Gotopage1">
+				<content>
+						<ObjectHeader id="objcmp"/>
+						<Table id="tablCust" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" width="auto"
+								items="{oModelMaterial>/Material}" visible="false">
+							
+								<headerToolbar>
+									<Toolbar>
+										<Title id="tableHeader" text="Revenue by End Customer"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column width="120px" visible="false" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Type"/>
+									</Column>
+									<Column width="120px" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Material Text"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="APR"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" >
+										<Text text="MAY"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUL"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="AUG"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="SEP"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="OCT"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="NOV"/>
+									</Column> 
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="DEC"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JAN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="FEB"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAR"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Inactive">
+										<cells>
+											<ObjectIdentifier title="{oModelEndCust>Type}" visible="false"/>
+											<Text text="{oModelMaterial>MaterialText}"/>
+											<Text text="{oModelMaterial>APR}"/>
+											<Text text="{oModelMaterial>MAY}"/>
+											<Text text="{oModelMaterial>JUN}"/>
+											<Text text="{oModelMaterial>JUL}"/>
+											<Text text="{oModelMaterial>AUG}"/>
+											<Text text="{oModelMaterial>SEP}"/>
+											<Text text="{oModelMaterial>OCT}"/>
+											<Text text="{oModelMaterial>NOV}"/>
+											<Text text="{oModelMaterial>DEC}"/>
+											<Text text="{oModelMaterial>JAN}"/>
+											<Text text="{oModelMaterial>FEB}"/>
+											<Text text="{oModelMaterial>MAR}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+							
+								<Panel id="settingsPanel" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Materialo By End Customer" width="auto"
+						class="sapUiResponsiveMargin" visible="false">
+						<layout:FixFlex id="chartFixFlex" minFlexSize="350">
+							<layout:flexContent>
+								<viz:Popover id="idPopOver"/>
+								<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%" vizType="line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{oModelMaterialChart>/MatChartByAmount}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="MaterialText" value="{oModelMaterialChart>MaterialText}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="JAN" value="{oModelMaterialChart>JAN}"/>
+												<viz.data:MeasureDefinition name="FEB" value="{oModelMaterialChart>FEB}"/>
+												<viz.data:MeasureDefinition name="MAR" value="{oModelMaterialChart>MAR}"/>
+												<viz.data:MeasureDefinition name="APR" value="{oModelMaterialChart>APR}"/>
+												<viz.data:MeasureDefinition name="MAY" value="{oModelMaterialChart>MAY}"/>
+												<viz.data:MeasureDefinition name="JUN" value="{oModelMaterialChart>JUN}"/>
+												<viz.data:MeasureDefinition name="JUL" value="{oModelMaterialChart>JUL}"/>
+												<viz.data:MeasureDefinition name="AUG" value="{oModelMaterialChart>AUG}"/>
+												<viz.data:MeasureDefinition name="SEP" value="{oModelMaterialChart>SEP}"/>
+												<viz.data:MeasureDefinition name="OCT" value="{oModelMaterialChart>OCT}"/>
+												<viz.data:MeasureDefinition name="NOV" value="{oModelMaterialChart>NOV}"/>
+												<viz.data:MeasureDefinition name="DEC" value="{oModelMaterialChart>DEC}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="JAN"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="FEB"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="MAR"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="APR"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="MAY"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="JUN"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="JUL"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="AUG"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="SEP"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="OCT"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="NOV"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="DEC"/>
+										<viz.feeds:FeedItem id="categoryAxisFeed1" uid="categoryAxis" type="Dimension" values="MaterialText"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</layout:flexContent>
+						</layout:FixFlex>
+						</Panel>
+						
+							<Panel id="panelShiftAmt" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue By Shift To Country"
+							width="auto" class="sapUiResponsiveMargin" visible="false">
+							<Table id="tableAmt1" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" width="auto"
+								items="{oModelMaterial>/EndCustQua}" visible="true">
+								<columns>
+									<Column width="120px" visible="false" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Type"/>
+									</Column>
+									<Column width="120px" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Ship To Country"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="APR"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAY"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUL"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="AUG"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="SEP"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="OCT"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="NOV"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="DEC"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JAN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="FEB"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAR"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Inactive">
+										<cells>
+											<ObjectIdentifier title="{oModelEndCust>Type}" visible="false"/>
+											<Text text="{oModelMaterial>MaterialText}"/>
+											<Text text="{oModelMaterial>APR}"/>
+											<Text text="{oModelMaterial>MAY}"/> 
+											<Text text="{oModelMaterial>JUN}"/>
+											<Text text="{oModelMaterial>JUL}"/>
+											<Text text="{oModelMaterial>AUG}"/>
+											<Text text="{oModelMaterial>SEP}"/>
+											<Text text="{oModelMaterial>OCT}"/>
+											<Text text="{oModelMaterial>NOV}"/>
+											<Text text="{oModelMaterial>DEC}"/>
+											<Text text="{oModelMaterial>JAN}"/>
+											<Text text="{oModelMaterial>FEB}"/>
+											<Text text="{oModelMaterial>MAR}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</Panel>
+							<Panel id="settingsPanelShip" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Materialo By Ship To Country" width="auto"
+						class="sapUiResponsiveMargin" visible="false">
+						<layout:FixFlex id="chartFixFlex1" minFlexSize="350">
+							<layout:flexContent>
+								<viz:Popover id="idPopOverShip"/>
+								<viz:VizFrame id="idVizFrameShip" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%" vizType="line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{oModelMaterialChart>/MatChartByAmount}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="MaterialText" value="{oModelMaterialChart>MaterialText}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="JAN" value="{oModelMaterialChart>JAN}"/>
+												<viz.data:MeasureDefinition name="FEB" value="{oModelMaterialChart>FEB}"/>
+												<viz.data:MeasureDefinition name="MAR" value="{oModelMaterialChart>MAR}"/>
+												<viz.data:MeasureDefinition name="APR" value="{oModelMaterialChart>APR}"/>
+												<viz.data:MeasureDefinition name="MAY" value="{oModelMaterialChart>MAY}"/>
+												<viz.data:MeasureDefinition name="JUN" value="{oModelMaterialChart>JUN}"/>
+												<viz.data:MeasureDefinition name="JUL" value="{oModelMaterialChart>JUL}"/>
+												<viz.data:MeasureDefinition name="AUG" value="{oModelMaterialChart>AUG}"/>
+												<viz.data:MeasureDefinition name="SEP" value="{oModelMaterialChart>SEP}"/>
+												<viz.data:MeasureDefinition name="OCT" value="{oModelMaterialChart>OCT}"/>
+												<viz.data:MeasureDefinition name="NOV" value="{oModelMaterialChart>NOV}"/>
+												<viz.data:MeasureDefinition name="DEC" value="{oModelMaterialChart>DEC}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="JAN"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="FEB"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="MAR"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="APR"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="MAY"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="JUN"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="JUL"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="AUG"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="SEP"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="OCT"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="NOV"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="DEC"/>
+										<viz.feeds:FeedItem id="categoryAxisFeed2" uid="categoryAxis" type="Dimension" values="MaterialText"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</layout:flexContent>
+						</layout:FixFlex>
+						</Panel>
+						
+				</content>
+					<footer>
+				<Toolbar>
+					<content>
+						<ToolbarSpacer />
+						<Button type="Accept" icon="sap-icon://excel-attachment" text="Download Excel" press="handleExcelExport" />
+					</content>
+				</Toolbar>
+			</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

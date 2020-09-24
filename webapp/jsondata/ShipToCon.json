@@ -1,0 +1,89 @@
+{
+	
+		"ShipToConQty": [{
+	
+		"Type": "TypeD",
+	"Customer": "India",
+		"APR": "8000 QTY",
+		"MAY": "8000 QTY",
+		"JUN": "8000 QTY",
+		"JUL": "8000 QTY",
+		"AUG": "8000 QTY",
+		"SEP": "8000 QTY",
+		"OCT": "8000 QTY",
+		"NOV": "8000 QTY",
+		"DEC": "8000 QTY",
+		"JAN": "8000 QTY",
+		"FEB": "8000 QTY",
+		"MAR": "8000 QTY",
+		"Month": "JAN"
+
+	}, {
+		"Type": "TypeD",
+		"Customer": "Japan",
+		"APR": "6000 QTY",
+		"MAY": "6000 QTY",
+		"JUN": "6000 QTY",
+		"JUL": "6000 QTY",
+		"AUG": "6000 QTY",
+		"SEP": "6000 QTY",
+		"OCT": "6000 QTY",
+		"NOV": "6000 QTY",
+		"DEC": "6000 QTY",
+		"JAN": "6000 QTY",
+		"FEB": "6000 QTY",
+		"MAR": "6000 QTY",
+		"Month": "FEB"
+
+	}, {
+		"Type": "TypeD",
+	"Customer": "China",
+		"APR": "3000 QTY",
+		"MAY": "3000 QTY",
+		"JUN": "3000 QTY ",
+		"JUL": "3000 QTY",
+		"AUG": "3000 QTY",
+		"SEP": "3000 QTY",
+		"OCT": "3000 QTY",
+		"NOV": "3000 QTY",
+		"DEC": "3000 QTY",
+		"JAN": "3000 QTY",
+		"FEB": "3000 QTY",
+		"MAR": "3000 QTY",
+		"Month": "MAR"
+
+	}, {
+		"Type": "TypeD",
+	"Customer": "Germany",
+		"APR": "9000 QTY",
+		"MAY": "9000 QTY",
+		"JUN": "9000 QTY ",
+		"JUL": "9000 QTY",
+		"AUG": "9000 QTY",
+		"SEP": "9000 QTY",
+		"OCT": "9000 QTY",
+		"NOV": "9000 QTY",
+		"DEC": "9000 QTY",
+		"JAN": "9000 QTY",
+		"FEB": "9000 QTY",
+		"MAR": "9000 QTY",
+		"Month": "APR"
+
+	}, {
+		"Type": "TypeD",
+		"Customer": "America",
+		"APR": "1000 QTY",
+		"MAY": "1000 QTY",
+		"JUN": "1000 QTY",
+		"JUL": "1000 QTY",
+		"AUG": "1000 QTY",
+		"SEP": "1000 QTY",
+		"OCT": "1000 QTY",
+		"NOV": "1000 QTY",
+		"DEC": "1000 QTY",
+		"JAN": "1000 QTY",
+		"FEB": "1000 QTY",
+		"MAR": "1000 QTY",
+		"Month": "MAY"
+	}]
+}

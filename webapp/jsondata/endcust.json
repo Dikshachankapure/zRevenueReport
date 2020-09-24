@@ -1,0 +1,176 @@
+{
+	"EndCustomerAmt": [{
+		"Type": "TypeA",
+		"Customer": "Customer 01",
+		"APR": "8M",
+		"MAY": "8M",
+		"JUN": "8M",
+		"JUL": "8M",
+		"AUG": "8M",
+		"SEP": "8M",
+		"OCT": "8M",
+		"NOV": "8M",
+		"DEC": "8M",
+		"JAN": "8M",
+		"FEB": "8M",
+		"MAR": "8M",
+		"Month": "JAN",
+		"Amount": "500000.00"
+
+	}, {
+		"Type": "TypeA",
+		"Customer": "Customer 02",
+		"APR": "6M",
+		"MAY": "6M",
+		"JUN": "6M",
+		"JUL": "6M",
+		"AUG": "6M",
+		"SEP": "6M",
+		"OCT": "6M",
+		"NOV": "6M",
+		"DEC": "6M",
+		"JAN": "6M",
+		"FEB": "6M",
+		"MAR": "6M",
+		"Month": "FEB",
+		"Amount": "1000000.00"
+
+	}, {
+		"Type": "TypeA",
+		"Customer": "Customer 03",
+		"APR": "3M",
+		"MAY": "3M",
+		"JUN": "3M ",
+		"JUL": "3M",
+		"AUG": "3M",
+		"SEP": "3M",
+		"OCT": "3M",
+		"NOV": "3M",
+		"DEC": "3M",
+		"JAN": "3M",
+		"FEB": "3M",
+		"MAR": "3M",
+
+		"Month": "MAR"
+
+	}, {
+		"Type": "TypeA",
+	"Customer": "Customer 04",
+		"APR": "9M",
+		"MAY": "9M",
+		"JUN": "9M ",
+		"JUL": "9M",
+		"AUG": "9M",
+		"SEP": "9M",
+		"OCT": "9M",
+		"NOV": "9M",
+		"DEC": "9M",
+		"JAN": "9M",
+		"FEB": "9M",
+		"MAR": "9M",
+		"Month": "APR"
+
+	}, {
+		"Type": "TypeA",
+		"Customer": "Customer 05",
+		"APR": "10M",
+		"MAY": "10M",
+		"JUN": "10M ",
+		"JUL": "10M",
+		"AUG": "10M",
+		"SEP": "10M",
+		"OCT": "10M",
+		"NOV": "10M",
+		"DEC": "10M",
+		"JAN": "10M",
+		"FEB": "10M",
+		"MAR": "10M",
+		"Month": "MAY"
+	}, {
+		"Type": "TypeA",
+	"Customer": "Customer 06",
+		"APR": "4M",
+		"MAY": "4M",
+		"JUN": "4M ",
+		"JUL": "4M",
+		"AUG": "4M",
+		"SEP": "4M",
+		"OCT": "4M",
+		"NOV": "4M",
+		"DEC": "4M",
+		"JAN": "4M",
+		"FEB": "4M",
+		"MAR": "4M",
+		"Month": "JUNE"
+
+	}, {
+		"Type": "TypeA",
+		"Customer": "Customer 07",
+		"APR": "6M",
+		"MAY": "6M",
+		"JUN": "6M ",
+		"JUL": "6M",
+		"AUG": "6M",
+		"SEP": "6M",
+		"OCT": "6M",
+		"NOV": "6M",
+		"DEC": "6M",
+		"JAN": "6M",
+		"FEB": "6M",
+		"MAR": "6M",
+		"Month": "AUG"
+
+	}, {
+		"Type": "TypeA",
+	"Customer": "Customer 08",
+		"APR": "11M",
+		"MAY": "11M",
+		"JUN": "11M ",
+		"JUL": "11M",
+		"AUG": "11M",
+		"SEP": "11M",
+		"OCT": "11M",
+		"NOV": "11M",
+		"DEC": "11M",
+		"JAN": "11M",
+		"FEB": "11M",
+		"MAR": "11M",
+		"Month": "SEP"
+
+	}, {
+		"Type": "TypeA",
+	"Customer": "Customer 09",
+		"APR": "7M",
+		"MAY": "7M",
+		"JUN": "7M ",
+		"JUL": "7M",
+		"AUG": "7M",
+		"SEP": "7M",
+		"OCT": "7M",
+		"NOV": "7M",
+		"DEC": "7M",
+		"JAN": "7M",
+		"FEB": "7M",
+		"MAR": "7M",
+		"Month": "OCT"
+
+	}, {
+		"Type": "TypeA",
+		"Customer": "Customer 10",
+		"APR": "12M",
+		"MAY": "12M",
+		"JUN": "12M ",
+		"JUL": "12M",
+		"AUG": "12M",
+		"SEP": "12M",
+		"OCT": "12M",
+		"NOV": "12M",
+		"DEC": "12M",
+		"JAN": "12M",
+		"FEB": "12M",
+		"MAR": "12M",
+		"Month": "NOV"
+
+	}]
+
+}

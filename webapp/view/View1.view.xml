@@ -1,0 +1,555 @@
+<mvc:View controllerName="RevenueReport.ZREVENUE_REPORT.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:semantic="sap.m.semantic" xmlns:layout="sap.ui.layout" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"  xmlns:viz.data="sap.viz.ui5.data" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<Panel id="panel1" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Search" width="auto" class="sapUiResponsiveMargin">
+							<content>
+								<ToolbarSpacer/>
+								<layout:Grid defaultSpan="XL4 L4 M4 S12">
+									<layout:VerticalLayout>
+										<Label text="Company Code:" required="true"/>
+										<Input id="txtCompanyCd" type="Text" textFormatMode="Key" placeholder="Select Company" showValueHelp="true"
+											valueHelpRequest="fnCompanySearchHelp" showSuggestion="true" valueHelpOnly="true" valueStateText="Select Company"
+											suggestionItems="{/CompanyData}">
+											<suggestionItems>
+												<core:ListItem key="{CompanyCode}" text="{CompanyName}"/>
+											</suggestionItems>
+										</Input>
+										<!--<Input width="200px" id="txtCurrencyType" showValueHelp="true" valueHelpRequest="openFragment1"/>-->
+									</layout:VerticalLayout>
+									<layout:VerticalLayout>
+										<Label text="Fiscal Year" required="true"/>
+										<ComboBox id="fiscalyr" change="OnSelect" selectedKey="0">
+											<items>
+												<core:Item text="Select" key="0"/>
+												<core:Item text="2015" key="1"/>
+												<core:Item text="2016" key="2"/>
+												<core:Item text="2016" key="3"/>
+												<core:Item text="2017" key="4"/>
+												<core:Item text="2018" key="5"/>
+												<core:Item text="2019" key="6"/>
+												<core:Item text="2020" key="7"/>
+											</items>
+										</ComboBox>
+									</layout:VerticalLayout>
+									<layout:VerticalLayout>
+										<Label text="Currency Type:" required="true"/>
+										<Input type="Text" id="currntype" valueHelpRequest="_handleValueCurrencyType" suggestionItems="{/CurrencyType}" textFormatMode="Key"
+											showSuggestion="true" showValueHelp="true">
+											<suggestionItems>
+												<core:Item text="{currency}" key="{currency}"/>
+											</suggestionItems>
+										</Input>
+										<!--<Input width="200px" id="txtCurrencyType" showValueHelp="true" valueHelpRequest="openFragment1"/>-->
+									</layout:VerticalLayout>
+									<layout:VerticalLayout>
+										<RadioButtonGroup columns="2" width="500px" class="sapUiSmallMargin" select="OnSelect">
+											<buttons>
+												<RadioButton id="rdbCust" text="End Customer"/>
+												<RadioButton id="rdbCon" text="Ship To Country"/>
+											</buttons>
+										</RadioButtonGroup>
+									</layout:VerticalLayout>
+									<layout:VerticalLayout>
+										<RadioButtonGroup columns="2" width="500px" class="sapUiSmallMargin" select="OnSelect">
+											<buttons>
+												<RadioButton id="rdb1" text="Amount"/>
+												<RadioButton id="rdb2" text="Quantity" select="onSelect"/>
+											</buttons>
+										</RadioButtonGroup>
+									</layout:VerticalLayout>
+									<layout:VerticalLayout>
+										<Label text="UOM" id="lbuomid" required="true" visible="false"/>
+										<Input type="Text" id="uomid" value="EA" visible="false"/>
+										<!--<Input width="200px" id="txtCurrencyType" showValueHelp="true" valueHelpRequest="openFragment1"/>-->
+									</layout:VerticalLayout>
+								</layout:Grid>
+								<layout:Grid defaultSpan="XL4 L4 M4 S12">
+									<layout:VerticalLayout>
+										<Label text=""/>
+										<Button type="Accept" width="180px" icon="sap-icon://search" press="onSearch" text="Search"/>
+									</layout:VerticalLayout>
+								</layout:Grid>
+							</content>
+						</Panel>
+						<Panel id="panelEndCutAmt" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue By End Customer(Amount)"
+							width="auto" class="sapUiResponsiveMargin" visible="false">
+							<Table id="tableAmt" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" width="auto"
+								items="{oModelEndCust>/EndCustomerAmt}" visible="true">
+								<columns>
+									<Column width="120px" visible="false" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Type"/>
+									</Column>
+									<Column width="120px" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="End Customer"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="APR" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAY"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUL"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="AUG"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="SEP"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="OCT"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="NOV"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="DEC"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JAN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="FEB"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAR"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Inactive">
+										<cells>
+											<ObjectIdentifier title="{oModelEndCust>Type}" visible="false"/>
+											<Link text="{oModelEndCust>Customer}" press="onPress"  id="idcust"/>
+											<Text text="{oModelEndCust>APR}"/>
+											<Text text="{oModelEndCust>MAY}"/>
+											<Text text="{oModelEndCust>JUN}"/>
+											<Text text="{oModelEndCust>JUL}"/>
+											<Text text="{oModelEndCust>AUG}"/>
+											<Text text="{oModelEndCust>SEP}"/>
+											<Text text="{oModelEndCust>OCT}"/>
+											<Text text="{oModelEndCust>NOV}"/>
+											<Text text="{oModelEndCust>DEC}"/>
+											<Text text="{oModelEndCust>JAN}"/>
+											<Text text="{oModelEndCust>FEB}"/>
+											<Text text="{oModelEndCust>MAR}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						
+						</Panel>
+						<Panel id="PanelEndCustChartAmt" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue Report By End Customer(Amount)" width="auto"
+						class="sapUiResponsiveMargin" visible="false">
+						<layout:FixFlex id="chartFixFlex" minFlexSize="450">
+							<layout:flexContent>
+								<viz:Popover id="idPopOver"/>
+								<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%" vizType="line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{oModelCustAmt>/ChartByAmount}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Company" value="{Company}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Jan" value="{oModelCustAmt>Jan}"/>
+												<viz.data:MeasureDefinition name="Feb" value="{oModelCustAmt>Feb}"/>
+												<viz.data:MeasureDefinition name="Mar" value="{oModelCustAmt>Mar}"/>
+												<viz.data:MeasureDefinition name="Apr" value="{oModelCustAmt>Apr}"/>
+												<viz.data:MeasureDefinition name="May" value="{oModelCustAmt>May}"/>
+												<viz.data:MeasureDefinition name="Jun" value="{oModelCustAmt>Jun}"/>
+												<viz.data:MeasureDefinition name="Jul" value="{oModelCustAmt>Jul}"/>
+												<viz.data:MeasureDefinition name="Aug" value="{oModelCustAmt>Aug}"/>
+												<viz.data:MeasureDefinition name="Sep" value="{oModelCustAmt>Sep}"/>
+												<viz.data:MeasureDefinition name="Oct" value="{oModelCustAmt>Oct}"/>
+												<viz.data:MeasureDefinition name="Nov" value="{oModelCustAmt>Nov}"/>
+												<viz.data:MeasureDefinition name="Dec" value="{oModelCustAmt>Dec}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+									<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jan"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Feb"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Mar"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Apr"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="May"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jun"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jul"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Aug"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Sep"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Oct"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Nov"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Dec"/>
+										<viz.feeds:FeedItem id="categoryAxisFeed1" uid="categoryAxis" type="Dimension" values="Company"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</layout:flexContent>
+						</layout:FixFlex>
+						</Panel>
+						
+						<Panel id="panelEndCutQty" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue By End Customer(Quantity)"
+							width="auto" class="sapUiResponsiveMargin" visible="false">
+							<Table id="tableQty" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" width="auto"
+								items="{oModelEndCustQua>/EndCustQua}" visible="true">
+								<columns>
+									<Column width="120px" visible="false" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Type"/>
+									</Column>
+									<Column width="120px" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="End Customer"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="APR"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAY"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUL"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="AUG"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="SEP"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="OCT"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="NOV"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="DEC"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JAN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="FEB"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAR"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Inactive">
+										<cells>
+											<ObjectIdentifier title="{oModelEndCustQua>Type}" visible="false"/>
+											<Link text="{oModelEndCustQua>Customer}" press="onPress"/>
+											<Text text="{oModelEndCustQua>APR}"/>
+											<Text text="{oModelEndCustQua>MAY}"/>
+											<Text text="{oModelEndCustQua>JUN}"/>
+											<Text text="{oModelEndCustQua>JUL}"/>
+											<Text text="{oModelEndCustQua>AUG}"/>
+											<Text text="{oModelEndCustQua>SEP}"/>
+											<Text text="{oModelEndCustQua>OCT}"/>
+											<Text text="{oModelEndCustQua>NOV}"/>
+											<Text text="{oModelEndCustQua>DEC}"/>
+											<Text text="{oModelEndCustQua>JAN}"/>
+											<Text text="{oModelEndCustQua>FEB}"/>
+											<Text text="{oModelEndCustQua>MAR}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</Panel>
+							<Panel id="PanelEndCustChartQty" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue Report By End Customer(Quantity)" width="auto"
+						class="sapUiResponsiveMargin" visible="false">
+						<layout:FixFlex id="chartFixFlex1" minFlexSize="450">
+							<layout:flexContent>
+								<viz:Popover id="idPopOverQty"/>
+								<viz:VizFrame id="idVizFrame1" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%" vizType="line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{oModelCustAmt>/ChartByQTY}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Company" value="{Company}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Jan" value="{oModelCustAmt>Jan}"/>
+												<viz.data:MeasureDefinition name="Feb" value="{oModelCustAmt>Feb}"/>
+												<viz.data:MeasureDefinition name="Mar" value="{oModelCustAmt>Mar}"/>
+												<viz.data:MeasureDefinition name="Apr" value="{oModelCustAmt>Apr}"/>
+												<viz.data:MeasureDefinition name="May" value="{oModelCustAmt>May}"/>
+												<viz.data:MeasureDefinition name="Jun" value="{oModelCustAmt>Jun}"/>
+												<viz.data:MeasureDefinition name="Jul" value="{oModelCustAmt>Jul}"/>
+												<viz.data:MeasureDefinition name="Aug" value="{oModelCustAmt>Aug}"/>
+												<viz.data:MeasureDefinition name="Sep" value="{oModelCustAmt>Sep}"/>
+												<viz.data:MeasureDefinition name="Oct" value="{oModelCustAmt>Oct}"/>
+												<viz.data:MeasureDefinition name="Nov" value="{oModelCustAmt>Nov}"/>
+												<viz.data:MeasureDefinition name="Dec" value="{oModelCustAmt>Dec}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+									<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jan"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Feb"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Mar"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Apr"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="May"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jun"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jul"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Aug"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Sep"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Oct"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Nov"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Dec"/>
+										<viz.feeds:FeedItem id="categoryAxisFeedQty" uid="categoryAxis" type="Dimension" values="Company"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</layout:flexContent>
+						</layout:FixFlex>
+						</Panel>
+						
+						<Panel id="panelShiftAmt" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue By Shift To Country(Amount)"
+							width="auto" class="sapUiResponsiveMargin" visible="false">
+							<Table id="tableAmt1" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" width="auto"
+								items="{oModelConAmt>/ShipToConAmt}" visible="true">
+								<columns>
+									<Column width="120px" visible="false" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Type"/>
+									</Column>
+									<Column width="120px" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Ship To Country"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="APR"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAY"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUL"/>
+									</Column>
+									<Column>
+										<Text text="AUG"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="SEP"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="OCT"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="NOV"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="DEC"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JAN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="FEB"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAR"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Inactive">
+										<cells>
+											<ObjectIdentifier title="{oModelConAmt>Type}" visible="false"/>
+											<Link text="{oModelConAmt>Customer}" press="onPress"/>
+											<Text text="{oModelConAmt>APR}"/>
+											<Text text="{oModelConAmt>MAY}"/>
+											<Text text="{oModelConAmt>JUN}"/>
+											<Text text="{oModelConAmt>JUL}"/>
+											<Text text="{oModelConAmt>AUG}"/>
+											<Text text="{oModelConAmt>SEP}"/>
+											<Text text="{oModelConAmt>OCT}"/>
+											<Text text="{oModelConAmt>NOV}"/>
+											<Text text="{oModelConAmt>DEC}"/>
+											<Text text="{oModelConAmt>JAN}"/>
+											<Text text="{oModelConAmt>FEB}"/>
+											<Text text="{oModelConAmt>MAR}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</Panel>
+							<Panel id="PanelShipConChartAmt" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue Report By Ship To Country(Amount)" width="auto"
+						class="sapUiResponsiveMargin" visible="false">
+						<layout:FixFlex id="chartFixFlexShip" minFlexSize="450">
+							<layout:flexContent>
+								<viz:Popover id="idPopOverShipAmt"/>
+								<viz:VizFrame id="idVizFrameShip" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%" vizType="line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{oModelCustAmt>/ChartByShipAmount}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Country" value="{Country}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Jan" value="{oModelCustAmt>Jan}"/>
+												<viz.data:MeasureDefinition name="Feb" value="{oModelCustAmt>Feb}"/>
+												<viz.data:MeasureDefinition name="Mar" value="{oModelCustAmt>Mar}"/>
+												<viz.data:MeasureDefinition name="Apr" value="{oModelCustAmt>Apr}"/>
+												<viz.data:MeasureDefinition name="May" value="{oModelCustAmt>May}"/>
+												<viz.data:MeasureDefinition name="Jun" value="{oModelCustAmt>Jun}"/>
+												<viz.data:MeasureDefinition name="Jul" value="{oModelCustAmt>Jul}"/>
+												<viz.data:MeasureDefinition name="Aug" value="{oModelCustAmt>Aug}"/>
+												<viz.data:MeasureDefinition name="Sep" value="{oModelCustAmt>Sep}"/>
+												<viz.data:MeasureDefinition name="Oct" value="{oModelCustAmt>Oct}"/>
+												<viz.data:MeasureDefinition name="Nov" value="{oModelCustAmt>Nov}"/>
+												<viz.data:MeasureDefinition name="Dec" value="{oModelCustAmt>Dec}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+									<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jan"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Feb"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Mar"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Apr"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="May"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jun"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jul"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Aug"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Sep"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Oct"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Nov"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Dec"/>
+										<viz.feeds:FeedItem id="categoryAxisFeedShipAmt" uid="categoryAxis" type="Dimension" values="Country"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</layout:flexContent>
+						</layout:FixFlex>
+						</Panel>
+						
+						
+						<Panel id="panelShiftQty" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue By Shift To Country(Quantity)"
+							width="auto" class="sapUiResponsiveMargin" visible="false">
+							<Table id="tableQty1" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" width="auto"
+								items="{oModelCon>/ShipToConQty}" visible="true">
+								<columns>
+									<Column width="120px" visible="false" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Type"/>
+									</Column>
+									<Column width="120px" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Ship To Country" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="APR"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAY"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JUL"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="AUG"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="SEP"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="OCT"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="NOV"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="DEC"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="JAN"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="FEB"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="MAR"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Inactive">
+										<cells>
+											<ObjectIdentifier title="{oModelCon>Type}" visible="false"/>
+											<Link text="{oModelCon>Customer}" press="onPress"/>
+											<Text text="{oModelCon>APR}"/>
+											<Text text="{oModelCon>MAY}"/>
+											<Text text="{oModelCon>JUN}"/>
+											<Text text="{oModelCon>JUL}"/>
+											<Text text="{oModelCon>AUG}"/>
+											<Text text="{oModelCon>SEP}"/>
+											<Text text="{oModelCon>OCT}"/>
+											<Text text="{oModelCon>NOV}"/>
+											<Text text="{oModelCon>DEC}"/>
+											<Text text="{oModelCon>JAN}"/>
+											<Text text="{oModelCon>FEB}"/>
+											<Text text="{oModelCon>MAR}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</Panel>
+						
+							<Panel id="PanelShipConChartQty" busyIndicatorDelay="0" expandable="true" expanded="true" headerText="Revenue Report By Ship To Country(Quantity)" width="auto"
+						class="sapUiResponsiveMargin" visible="false">
+						<layout:FixFlex id="chartFixFlexShipQty" minFlexSize="450">
+							<layout:flexContent>
+								<viz:Popover id="idPopOverShipQty"/>
+								<viz:VizFrame id="idVizFrameShipQty" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%" vizType="line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{oModelCustAmt>/ChartByShipQTY}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Country" value="{Country}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Jan" value="{oModelCustAmt>Jan}"/>
+												<viz.data:MeasureDefinition name="Feb" value="{oModelCustAmt>Feb}"/>
+												<viz.data:MeasureDefinition name="Mar" value="{oModelCustAmt>Mar}"/>
+												<viz.data:MeasureDefinition name="Apr" value="{oModelCustAmt>Apr}"/>
+												<viz.data:MeasureDefinition name="May" value="{oModelCustAmt>May}"/>
+												<viz.data:MeasureDefinition name="Jun" value="{oModelCustAmt>Jun}"/>
+												<viz.data:MeasureDefinition name="Jul" value="{oModelCustAmt>Jul}"/>
+												<viz.data:MeasureDefinition name="Aug" value="{oModelCustAmt>Aug}"/>
+												<viz.data:MeasureDefinition name="Sep" value="{oModelCustAmt>Sep}"/>
+												<viz.data:MeasureDefinition name="Oct" value="{oModelCustAmt>Oct}"/>
+												<viz.data:MeasureDefinition name="Nov" value="{oModelCustAmt>Nov}"/>
+												<viz.data:MeasureDefinition name="Dec" value="{oModelCustAmt>Dec}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+									<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jan"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Feb"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Mar"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Apr"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="May"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jun"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Jul"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Aug"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Sep"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Oct"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Nov"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Dec"/>
+										<viz.feeds:FeedItem id="categoryAxisFeedShipQty" uid="categoryAxis" type="Dimension" values="Country"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</layout:flexContent>
+						</layout:FixFlex>
+						</Panel>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="Not Found" title="Select Company" search="fnSearchCompanyCode" confirm="fnConfirmCompanyCode"
+		cancel="fnConfirmCompanyCode" items="{ path: '/CompanyCodeData' }">
+		<StandardListItem title="{CompanyName}" description="{CompanyCode}" iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>
